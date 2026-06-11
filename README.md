@@ -12,8 +12,14 @@ El proyecto resuelve el desafío arquitectónico de unificar el transporte WAN y
 * **Switching L3:** Entornos Cisco Catalyst, ACLs extendidas y segmentación inter-VLAN.
 
 ## 🗺️ Topología de Red
-![Topología General](ruta/a/tu/imagen_topologia.png)
-*(Nota: Añadir aquí la imagen principal del diagrama exportado)*
+
+### Topología Lógica (SD-WAN Overlay)
+*(Esquema de interconexión BGP, zonas de seguridad y distribución de los bloques /19).*
+![Topología Lógica](topología1.png)
+
+### Topología Física (Underlay y Conexiones)
+*(Detalle de conmutación L3, cableado troncal, clústeres FortiGate y DMZ).*
+![Topología Física](topología2.png)
 
 ## 📂 Estructura de la Documentación
 
