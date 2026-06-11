@@ -6,7 +6,6 @@ theme:
     primary: indigo
 nav:
   - 🏠 Portada: index.md
-  - 🌍 1. Topología y Redes: 1-direccionamiento.md
   - 🔄 2. OSPF y BGP: 2-enrutamiento-ospf-bgp.md
   - 🛡️ 3. Seguridad FortiGate: 3-seguridad-fortigate.md
   - 📋 Anexo A (Subnetting): 4-anexo-subnetting-vlans.md
