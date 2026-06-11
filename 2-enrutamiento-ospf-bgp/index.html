@@ -1,0 +1,570 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../3-seguridad-fortigate/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>🔄 2. OSPF y BGP - Arquitectura Corporativa SD-WAN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-enrutamiento-dinamico-ospf-bgp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Arquitectura Corporativa SD-WAN" class="md-header__button md-logo" aria-label="Arquitectura Corporativa SD-WAN" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Arquitectura Corporativa SD-WAN
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔄 2. OSPF y BGP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Arquitectura Corporativa SD-WAN" class="md-nav__button md-logo" aria-label="Arquitectura Corporativa SD-WAN" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Arquitectura Corporativa SD-WAN
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏠 Portada
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 2. OSPF y BGP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 2. OSPF y BGP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-enrutamiento-interno-lan-single-area-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Enrutamiento Interno LAN (Single-Area OSPF)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-enrutamiento-exterior-wan-ebgp-y-sumarizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Enrutamiento Exterior WAN (eBGP y Sumarización)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-forced-tunneling-salida-centralizada-a-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Forced Tunneling (Salida Centralizada a Internet)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-seguridad-fortigate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛡️ 3. Seguridad FortiGate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-anexo-subnetting-vlans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📋 Anexo A (Subnetting)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-anexo-tablas-enrutamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛣️ Anexo B (Rutas)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-enrutamiento-interno-lan-single-area-ospf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Enrutamiento Interno LAN (Single-Area OSPF)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-enrutamiento-exterior-wan-ebgp-y-sumarizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Enrutamiento Exterior WAN (eBGP y Sumarización)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-forced-tunneling-salida-centralizada-a-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Forced Tunneling (Salida Centralizada a Internet)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2-enrutamiento-dinamico-ospf-bgp">2. Enrutamiento Dinámico (OSPF &amp; BGP)</h1>
+<p>El núcleo de las comunicaciones de este proyecto se basa en la separación estricta de dos protocolos de enrutamiento: OSPF para la convergencia LAN rápida dentro de cada edificio, y BGP para la interconexión escalable a través de la WAN corporativa.</p>
+<h2 id="21-enrutamiento-interno-lan-single-area-ospf">2.1. Enrutamiento Interno LAN (Single-Area OSPF)</h2>
+<p>Cada empresa gestiona su enrutamiento interno utilizando OSPFv2 confinado al Área 0. Se ha implementado un diseño de OSPF "paranoico" y securizado para evitar manipulaciones de la tabla de enrutamiento desde los puertos de acceso de los usuarios.</p>
+<ul>
+<li><strong>Máscaras Wildcard:</strong> Para mantener las configuraciones eficientes, se utiliza la máscara invertida del bloque maestro corporativo. Por ejemplo, en la Empresa A, el comando <code>network 10.0.0.0 0.0.31.255 area 0</code> inyecta automáticamente todas sus redes en el proceso de enrutamiento sin necesidad de declarar VLAN por VLAN.</li>
+<li><strong>Interfaces Pasivas:</strong> Se silencia el protocolo OSPF en todas las VLANs de acceso (<code>passive-interface default</code>). De esta forma, las bocas de red de la oficina no envían ni escuchan mensajes de enrutamiento, previniendo inyecciones de rutas falsas.</li>
+<li><strong>Vecindades Estáticas (Unicast):</strong> Se desactiva el descubrimiento automático por Multicast entre el Switch Core L3 y el Firewall local. La relación de vecindad se fuerza de manera explícita indicando la IP exacta del dispositivo vecino.</li>
+</ul>
+<h2 id="22-enrutamiento-exterior-wan-ebgp-y-sumarizacion">2.2. Enrutamiento Exterior WAN (eBGP y Sumarización)</h2>
+<p>Para interconectar el Centro de Procesamiento de Datos (CPD) con las filiales, se descarta extender OSPF sobre la SD-WAN para evitar sobrecargas por recálculo masivo en caso de caídas de enlaces locales (flapping). En su lugar, cada sede opera como un Sistema Autónomo (AS) privado mediante <strong>eBGP</strong>.</p>
+<ul>
+<li><strong>Peering sobre Overlay:</strong> Las sesiones BGP (TCP puerto 179) no transitan por el enrutamiento público de los ISPs. El Peering se establece de forma encriptada, utilizando exclusivamente las Interfaces Virtuales creadas dentro de los túneles IPsec (red de tránsito <code>192.168.254.0/24</code>).</li>
+<li><strong>Sumarización Estricta (La clave del rendimiento):</strong> Las sedes nunca anuncian sus subredes internas hacia la WAN. El FortiGate de cada empresa agrupa matemáticamente sus redes y anuncia <strong>únicamente un bloque maestro <code>/19</code></strong> (ej. la Empresa A solo propaga <code>10.0.0.0/19</code>). </li>
+<li><em>Beneficio:</em> Las tablas de enrutamiento del firewall central se mantienen ultraligeras y el backbone corporativo permanece estable frente a cortes internos en las sucursales.</li>
+</ul>
+<h2 id="23-forced-tunneling-salida-centralizada-a-internet">2.3. Forced Tunneling (Salida Centralizada a Internet)</h2>
+<p>Ninguna sede tiene salida a Internet directa. El diseño fuerza todo el tráfico externo hacia el firewall perimetral del CPD Central para centralizar la auditoría.</p>
+<ol>
+<li>El <strong>Switch Core local</strong> absorbe el tráfico de los usuarios y envía las peticiones externas hacia su FortiGate local mediante una ruta por defecto estática (<code>0.0.0.0/0</code>).</li>
+<li>El <strong>FortiGate de la filial</strong> enruta todo este tráfico hacia el interior del túnel IPsec SD-WAN.</li>
+<li>El <strong>FortiGate 600F del CPD</strong> recibe el tráfico encapsulado, lo desencripta, aplica las políticas NGFW (Antivirus, Filtrado Web, IPS) y le da salida a la red pública.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
