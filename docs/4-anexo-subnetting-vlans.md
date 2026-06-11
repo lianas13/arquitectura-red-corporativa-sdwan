@@ -37,6 +37,8 @@ Este anexo detalla la segmentación de red a nivel de VLAN para cada una de las 
 | Administración| 30 | `10.0.16.152` | `/30` | 2 | `10.0.16.153 - 10.0.16.154` | [cite_start]`10.0.16.155` | [cite: 96]
 | Dirección | 10 | `10.0.16.156` | `/30` | 2 | `10.0.16.157 - 10.0.16.158` | [cite_start]`10.0.16.159` | [cite: 96]
 
+---
+
 ## Empresa B (Bloque Maestro: 10.0.32.0/19)
 
 ### [cite_start]Sede Principal Empresa B [cite: 99]
@@ -70,6 +72,7 @@ Este anexo detalla la segmentación de red a nivel de VLAN para cada una de las 
 | Informática | 20 | `10.0.48.148` | `/30` | 2 | `10.0.48.149 - 10.0.48.150` | [cite_start]`10.0.48.151` | [cite: 105]
 | Administración| 30 | `10.0.48.152` | `/30` | 2 | `10.0.48.153 - 10.0.48.154` | [cite_start]`10.0.48.155` | [cite: 105]
 | Dirección | 10 | `10.0.48.156` | `/30` | 2 | `10.0.48.157 - 10.0.48.158` | [cite_start]`10.0.48.159` | [cite: 105]
+
 ---
 
 ## Empresa C (Bloque Maestro: 10.0.64.0/19)
@@ -105,6 +108,7 @@ Este anexo detalla la segmentación de red a nivel de VLAN para cada una de las 
 | Informática | 20 | `10.0.80.148` | `/30` | 2 | `10.0.80.149 - 10.0.80.150` | [cite_start]`10.0.80.151` | [cite: 114]
 | Administración| 30 | `10.0.80.152` | `/30` | 2 | `10.0.80.153 - 10.0.80.154` | [cite_start]`10.0.80.155` | [cite: 114]
 | Dirección | 10 | `10.0.80.156` | `/30` | 2 | `10.0.80.157 - 10.0.80.158` | [cite_start]`10.0.80.159` | [cite: 114]
+
 ---
 
 ## Empresa D (Bloque Maestro: 10.0.96.0/19)
