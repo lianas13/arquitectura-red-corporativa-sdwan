@@ -37,7 +37,13 @@ La documentación técnica de este diseño se divide en tres bloques fundamental
    * Aislamiento multinacional mediante Zero-Trust en interfaces virtuales.
    * Reglas de Source NAT (PAT) y Destination NAT (VIPs) en CPD Central.
    * Blindaje unidireccional de la Zona Desmilitarizada (DMZ).
+     
+4. **[Anexo A: Tablas de Direccionamiento y Subnetting](docs/4-anexo-subnetting-vlans.md)**
+   * Desglose completo de rangos de IPs, VLANs y gateways para las sedes y todas sus delegaciones (Empresas A, B, C y D).
 
+5. **[Anexo B: Tablas de Enrutamiento (Routing Tables)](docs/5-anexo-tablas-enrutamiento.md)**
+   * Documentación del salto a salto: rutas estáticas, inyecciones OSPF y sumarización BGP en los equipos Core.
+     
 ## 🚀 Próximas Fases (Roadmap)
 * Automatización del despliegue de infraestructura base (IaC) mediante la creación de módulos y providers en Terraform.
 * Migración de servicios internos hacia instancias EC2 y conectividad VPN Site-to-Site nativa con AWS.
